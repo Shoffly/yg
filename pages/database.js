@@ -168,7 +168,7 @@ const DataTable = () => {
         <select value={branchFilter} onChange={handleBranchFilterChange} className={styles.input}>
           <option value="">All Branches</option>
           {availableBranches.map((branch) => (
-            <option key={branch} value={branch}>
+            <option key={Math.random().toString(36).substring(2, 10)} value={branch}>
               {branch}
             </option>
           ))}
@@ -210,13 +210,13 @@ const DataTable = () => {
         <table {...getTableProps()} className={styles.table}>
           <thead>
             {headerGroups.map((headerGroup) => (
-              <tr key={headerGroup.id} {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
+              <tr key={Math.random().toString(36).substring(2, 10)} {...headerGroup.getHeaderGroupProps()}>
+                {headerGroups.map((header) => (
                   <th
-                    key={column.id}
-                    {...column.getHeaderProps()}
+                    key={Math.random().toString(36).substring(2, 10)}
+                    {...header.getHeaderProps()}
                   >
-                    {column.render('Header')}
+                    {header.render('Header')}
                   </th>
                 ))}
               </tr>
@@ -226,10 +226,10 @@ const DataTable = () => {
             {page.map((row, index) => {
               prepareRow(row);
               return (
-                <tr key={row.original.user_id} {...row.getRowProps()}>
+                <tr key={Math.random().toString(36).substring(2, 10)} {...row.getRowProps()}>
                   {row.cells.map((cell, cellIndex) => (
                     <td
-                      key={cell.column.id}
+                      key={Math.random().toString(36).substring(2, 10)}
                       {...cell.getCellProps()}
                     >
                       {cell.render('Cell')}

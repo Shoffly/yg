@@ -213,7 +213,7 @@ const DataTable = () => {
               <tr key={Math.random().toString(36).substring(2, 10)} {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th
-                    key={Math.random().toString(36).substring(2, 11)}
+                    key={Math.random().toString(36).substring(2, 10)}
                     {...column.getHeaderProps()}
                   >
                     {column.render('Header')}

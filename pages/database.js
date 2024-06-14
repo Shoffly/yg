@@ -2,7 +2,7 @@ import useSWR from 'swr';
 import { useMemo, useState, useEffect } from 'react';
 import { useTable, usePagination, useFilters } from 'react-table';
 import styles from '../styles/DataTable.module.css';
-import NotificationForm from '../components/ui/NotificationForm'; // Import the NotificationForm component
+import NotificationForm from '../components/ui/NotificationForm';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -185,7 +185,7 @@ const DataTable = () => {
             {page.map((row) => {
               prepareRow(row);
               return (
-                <tr key={row.id} {...row.getRowProps()}>
+                <tr key={row.original.user_id} {...row.getRowProps()}>
                   {row.cells.map((cell) => (
                     <td key={cell.column.id} {...cell.getCellProps()}>{cell.render('Cell')}</td>
                   ))}

@@ -131,7 +131,7 @@ const DataTable = () => {
       <div className={styles.filters}>
         <select value={branchFilter} onChange={handleBranchFilterChange} className={styles.input}>
           <option value="">All Branches</option>
-          {availableBranches.map((branch, index) => (
+          {availableBranches.map((branch) => (
             <option key={branch} value={branch}>
               {branch}
             </option>

@@ -25,7 +25,7 @@ const DataTable = () => {
 
   useEffect(() => {
     if (data) {
-      const branches = Array.from(new Set(data.map(row => row.top_branch))).sort();
+      const branches = Array.from(new Set(data.map((row) => row.top_branch))).sort();
       setAvailableBranches(branches);
     }
   }, [data]);
@@ -39,22 +39,54 @@ const DataTable = () => {
 
   const columns = useMemo(
     () => [
-      { Header: 'User ID', accessor: 'user_id' },
-      { Header: 'Last Order Date', accessor: 'max_order_date', Cell: ({ value }) => formatDate(value) },
-      { Header: 'Number of Orders', accessor: 'number_of_orders' },
-      { Header: 'Average Order Value', accessor: 'average_transaction_value', Cell: ({ value }) => formatCurrency(value) },
-      { Header: 'Days Since Last Order', accessor: 'days_since_last_order' },
-      { Header: 'Recency Rank', accessor: 'recency_rank' },
-      { Header: 'Frequency Rank', accessor: 'frequency_rank' },
-      { Header: 'Monetary Rank', accessor: 'monetary_value_rank' },
-      { Header: 'First Name', accessor: 'first_name' },
-      { Header: 'Top Branch', accessor: 'top_branch' },
+      {
+        Header: 'User ID',
+        accessor: 'user_id',
+      },
+      {
+        Header: 'Last Order Date',
+        accessor: 'max_order_date',
+        Cell: ({ value }) => formatDate(value),
+      },
+      {
+        Header: 'Number of Orders',
+        accessor: 'number_of_orders',
+      },
+      {
+        Header: 'Average Order Value',
+        accessor: 'average_transaction_value',
+        Cell: ({ value }) => formatCurrency(value),
+      },
+      {
+        Header: 'Days Since Last Order',
+        accessor: 'days_since_last_order',
+      },
+      {
+        Header: 'Recency Rank',
+        accessor: 'recency_rank',
+      },
+      {
+        Header: 'Frequency Rank',
+        accessor: 'frequency_rank',
+      },
+      {
+        Header: 'Monetary Rank',
+        accessor: 'monetary_value_rank',
+      },
+      {
+        Header: 'First Name',
+        accessor: 'first_name',
+      },
+      {
+        Header: 'Top Branch',
+        accessor: 'top_branch',
+      },
     ],
     []
   );
 
   const filteredData = useMemo(() => {
-    return data?.filter(row => {
+    return data?.filter((row) => {
       const recencyCategory = getCategory(row.recency_rank);
       const frequencyCategory = getCategory(row.frequency_rank);
       const monetaryCategory = getCategory(row.monetary_value_rank);
@@ -70,10 +102,14 @@ const DataTable = () => {
     }) || [];
   }, [data, userIdFilter, branchFilter, daysFilter, recencyFilter, frequencyFilter, monetaryFilter]);
 
-  const filteredUserIds = filteredData.map(row => row.user_id);
+  const filteredUserIds = filteredData.map((row) => row.user_id);
 
   const tableInstance = useTable(
-    { columns, data: filteredData, initialState: { pageIndex: 0, pageSize: 10 } },
+    {
+      columns,
+      data: filteredData,
+      initialState: { pageIndex: 0, pageSize: 10 },
+    },
     useFilters,
     usePagination
   );
@@ -95,32 +131,32 @@ const DataTable = () => {
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;
 
-  const handleBranchFilterChange = e => {
+  const handleBranchFilterChange = (e) => {
     const value = e.target.value || "";
     setBranchFilter(value);
   };
 
-  const handleDaysFilterChange = e => {
+  const handleDaysFilterChange = (e) => {
     const value = e.target.value || "";
     setDaysFilter(value);
   };
 
-  const handleRecencyFilterChange = e => {
+  const handleRecencyFilterChange = (e) => {
     const value = e.target.value || "";
     setRecencyFilter(value);
   };
 
-  const handleFrequencyFilterChange = e => {
+  const handleFrequencyFilterChange = (e) => {
     const value = e.target.value || "";
     setFrequencyFilter(value);
   };
 
-  const handleMonetaryFilterChange = e => {
+  const handleMonetaryFilterChange = (e) => {
     const value = e.target.value || "";
     setMonetaryFilter(value);
   };
 
-  const handleUserIdFilterChange = e => {
+  const handleUserIdFilterChange = (e) => {
     const value = e.target.value || "";
     setUserIdFilter(value);
   };
@@ -176,18 +212,28 @@ const DataTable = () => {
             {headerGroups.map((headerGroup) => (
               <tr key={headerGroup.id} {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th key={column.id} {...column.getHeaderProps()}>{column.render('Header')}</th>
+                  <th
+                    key={column.id}
+                    {...column.getHeaderProps()}
+                  >
+                    {column.render('Header')}
+                  </th>
                 ))}
               </tr>
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {page.map((row) => {
+            {page.map((row, index) => {
               prepareRow(row);
               return (
                 <tr key={row.original.user_id} {...row.getRowProps()}>
-                  {row.cells.map((cell) => (
-                    <td key={cell.column.id} {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                  {row.cells.map((cell, cellIndex) => (
+                    <td
+                      key={cell.column.id}
+                      {...cell.getCellProps()}
+                    >
+                      {cell.render('Cell')}
+                    </td>
                   ))}
                 </tr>
               );
@@ -212,7 +258,7 @@ const DataTable = () => {
       <div className={styles.segmentSize}>
         Segment size: <strong>{filteredData.length}</strong> users
       </div>
-      <NotificationForm userIds={filteredUserIds} /> {/* Pass the filtered user IDs */}
+      <NotificationForm userIds={filteredUserIds} />
     </div>
   );
 };

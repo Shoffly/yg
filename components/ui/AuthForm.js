@@ -94,7 +94,7 @@ export default function AuthForm({ mode = 'login' }) {
             </>
           ) : (
             <>
-              New user? <Link href="/sign/up">Sign Up</Link>
+              
             </>
           )}
         </div>

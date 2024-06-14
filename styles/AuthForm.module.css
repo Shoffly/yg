@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/shoffly.appspot.com/o/iOS-13-iPhone-11-Pro-wallpaper-inspired-ar72014-Desktop.png?alt=media&token=deb3ac09-b24f-46bb-8b4f-4f4178c4db71') ; /* Use the correct path to your uploaded image */
+  background-size: cover;
+  background-position: center;
+}
+
+.header {
+  color: white;
+  
+}
+
+.formBox {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 300px;
+}
+
+.label {
+  color: #fff;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+}
+
+.error {
+  color: red;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.switchMode {
+  text-align: center;
+  color: #fff;
+  margin-top: 1rem;
+}
+
+.switchMode a {
+  color: #4caf50;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.switchMode a:hover {
+  text-decoration: underline;
+}

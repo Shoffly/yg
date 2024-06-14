@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  height: 100vh;
+  background-color: black;
+  padding: 2rem;
+  text-align: left;
+}
+
+.h1 {
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.section {
+  margin: 1rem 0;
+}
+
+.h2 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.button {
+  padding: 1rem 2rem;
+  margin: 0.5rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #45a049;
+}

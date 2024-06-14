@@ -1,0 +1,156 @@
+/* styles/DataTable.module.css */
+.container {
+  padding: 20px;
+  background-color: black; /* Set the background color of the container */
+}
+
+.title {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: white; /* Set the text color of the title */
+  text-decoration: underline;
+  text-decoration-color: #4caf50;
+}
+
+.filters {
+  margin-bottom: 20px;
+  display: flex; /* Stack filters in a line */
+  justify-content: flex-start; /* Align filters to the start */
+}
+
+.input {
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid #333; /* Add border to inputs */
+  background-color: #333; /* Set background color of inputs */
+  color: white; /* Set text color of inputs */
+}
+
+.table-container {
+  background-color: #333; /* Set background color of the table container */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow to lift table */
+  border-radius: 10px; /* Add border radius to table container */
+  overflow: hidden; /* Hide overflow for rounded corners */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  background-color: #444; /* Set background color of table cells */
+  color: white; /* Set text color of table cells */
+}
+
+.table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #333; /* Set background color of table header */
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 10px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.segmentSize {
+  color: white; /* Set text color of segment size */
+}/* styles/DataTable.module.css */
+.container {
+  padding: 20px;
+  background-color: black; /* Set the background color of the container */
+}
+
+.title {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: white; /* Set the text color of the title */
+}
+
+.filters {
+  margin-bottom: 20px;
+  display: flex; /* Stack filters in a line */
+  justify-content: flex-start; /* Align filters to the start */
+}
+
+.input {
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid #333; /* Add border to inputs */
+  background-color: #333; /* Set background color of inputs */
+  color: white; /* Set text color of inputs */
+}
+
+.tablecontainer {
+  background-color: #333; /* Set background color of the table container */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow to lift table */
+  border-radius: 10px; /* Add border radius to table container */
+  overflow: hidden; /* Hide overflow for rounded corners */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  background-color: #444; /* Set background color of table cells */
+  color: white; /* Set text color of table cells */
+}
+
+.table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #333; /* Set background color of table header */
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.segmentSize {
+  color: white; /* Set text color of segment size */
+  text-decoration: underline;
+margin-top: 15px;
+  text-decoration-color: #4caf50;
+}

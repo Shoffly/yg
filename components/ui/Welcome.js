@@ -29,7 +29,9 @@ export default function Welcome() {
           <div className={styles.section}>
             <h2 className={styles.h2}>Send from</h2>
             <Link href="/database"><button className={styles.button}>Database</button></Link>
+            <Link href="excel">
             <button className={styles.button}>Excel Sheet</button>
+              </Link>
           </div>
           <div className={styles.section}>
             <h2 className={styles.h2}>Analyze</h2>

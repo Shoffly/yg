@@ -132,7 +132,7 @@ const DataTable = () => {
         <select value={branchFilter} onChange={handleBranchFilterChange} className={styles.input}>
           <option value="">All Branches</option>
           {availableBranches.map((branch, index) => (
-            <option key={index} value={branch}>
+            <option key={branch} value={branch}>
               {branch}
             </option>
           ))}
@@ -174,9 +174,9 @@ const DataTable = () => {
         <table {...getTableProps()} className={styles.table}>
           <thead>
             {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
+              <tr key={headerGroup.id} {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()} key={column.id}>{column.render('Header')}</th>
+                  <th key={column.id} {...column.getHeaderProps()}>{column.render('Header')}</th>
                 ))}
               </tr>
             ))}
@@ -185,11 +185,9 @@ const DataTable = () => {
             {page.map((row) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()} key={row.id}> {/* Assuming each row has a unique id */}
+                <tr key={row.id} {...row.getRowProps()}>
                   {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()} key={cell.column.id}>
-                      {cell.render('Cell')}
-                    </td>
+                    <td key={cell.column.id} {...cell.getCellProps()}>{cell.render('Cell')}</td>
                   ))}
                 </tr>
               );

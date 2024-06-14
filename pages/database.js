@@ -174,9 +174,9 @@ const DataTable = () => {
         <table {...getTableProps()} className={styles.table}>
           <thead>
             {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
+              <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                  <th {...column.getHeaderProps()} key={column.id}>{column.render('Header')}</th>
                 ))}
               </tr>
             ))}
@@ -185,9 +185,11 @@ const DataTable = () => {
             {page.map((row) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()}>
+                <tr {...row.getRowProps()} key={row.id}> {/* Assuming each row has a unique id */}
                   {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                    <td {...cell.getCellProps()} key={cell.column.id}>
+                      {cell.render('Cell')}
+                    </td>
                   ))}
                 </tr>
               );

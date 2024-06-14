@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import { useMemo, useState, useEffect } from 'react';
-import { useTable, usePagination, useFilters } from 'react-table';
+import { useTable, useFilters, usePagination } from 'react-table';
 import styles from '../styles/DataTable.module.css';
 import NotificationForm from '../components/ui/NotificationForm';
 

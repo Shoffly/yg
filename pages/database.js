@@ -211,12 +211,12 @@ const DataTable = () => {
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr key={Math.random().toString(36).substring(2, 10)} {...headerGroup.getHeaderGroupProps()}>
-                {headerGroups.map((header) => (
+                {headerGroup.headers.map((column) => (
                   <th
                     key={Math.random().toString(36).substring(2, 10)}
-                    {...header.getHeaderProps()}
+                    {...column.getHeaderProps()}
                   >
-                    {header.render('Header')}
+                    {column.render('Header')}
                   </th>
                 ))}
               </tr>
@@ -226,10 +226,10 @@ const DataTable = () => {
             {page.map((row, index) => {
               prepareRow(row);
               return (
-                <tr key={Math.random().toString(36).substring(2, 10)} {...row.getRowProps()}>
+                <tr key={row.original.user_id} {...row.getRowProps()}>
                   {row.cells.map((cell, cellIndex) => (
                     <td
-                      key={Math.random().toString(36).substring(2, 10)}
+                      key={cell.column.id}
                       {...cell.getCellProps()}
                     >
                       {cell.render('Cell')}

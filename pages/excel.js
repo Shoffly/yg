@@ -6,6 +6,7 @@ import XLSX from 'xlsx'; // Import XLSX library for Excel processing
 
 const ExcelTable = () => {
   const [excelData, setExcelData] = useState(null);
+  const [users, setUsers] = useState([]);
 
   // Function to handle file upload
   const handleFileUpload = (e) => {
@@ -17,13 +18,20 @@ const ExcelTable = () => {
       const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
       const excelRows = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
       setExcelData(excelRows);
+
+      // Extract user data from the Excel sheet (assuming user_id is in the first column and first_name is in the second column)
+      const usersData = excelRows.slice(1).map(row => ({
+        user_id: row[0],
+        first_name: row[1]
+      }));
+      setUsers(usersData);
     };
     reader.readAsBinaryString(file);
   };
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Excel</h1>
+      <h1 className={styles.title}>Excel Upload</h1>
       {/* File Upload Section */}
       <div className={styles.fileUpload}>
         <input type="file" onChange={handleFileUpload} />
@@ -52,8 +60,8 @@ const ExcelTable = () => {
           </table>
         </div>
       )}
-      {/* Notification Form */}
-      {excelData && <NotificationForm userIds={excelData.map(row => row[0])} />}
+      
+      {users.length > 0 && <NotificationForm users={users} />}
     </div>
   );
 };

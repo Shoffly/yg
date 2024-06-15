@@ -102,7 +102,12 @@ const DataTable = () => {
     }) || [];
   }, [data, userIdFilter, branchFilter, daysFilter, recencyFilter, frequencyFilter, monetaryFilter]);
 
-  const filteredUserIds = filteredData.map((row) => row.user_id);
+  const filteredUsers = filteredData.map((row) => ({
+    user_id: row.user_id,
+    first_name: row.first_name
+  }));
+
+  console.log(filteredUsers)
 
   const tableInstance = useTable(
     {
@@ -258,7 +263,7 @@ const DataTable = () => {
       <div className={styles.segmentSize}>
         Segment size: <strong>{filteredData.length}</strong> users
       </div>
-      <NotificationForm userIds={filteredUserIds} />
+      <NotificationForm users={filteredUsers} />
     </div>
   );
 };

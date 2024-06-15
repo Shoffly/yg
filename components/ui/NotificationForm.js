@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '/styles/NotificationForm.module.css'; // Import CSS module for styling
 
-const NotificationForm = ({ userIds }) => {
+const NotificationForm = ({ users }) => {
   const [campaignName, setCampaignName] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -11,13 +11,17 @@ const NotificationForm = ({ userIds }) => {
     e.preventDefault();
 
     const formData = {
-      user_ids: userIds,
+      users: users.map(user => ({
+        user_id: user.user_id,
+        first_name: user.first_name
+      })),
       campaign: campaignName,
       title: title,
       content: content
     };
 
     try {
+      console.log(formData)
       const response = await fetch('https://ns-server-ky5ws.ondigitalocean.app/send-notification', {
         method: 'POST',
         headers: {

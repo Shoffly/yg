@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { router } from 'next/router';
 import styles from '/styles/NotificationForm.module.css'; // Import CSS module for styling
 
 const NotificationForm = ({ users }) => {
@@ -31,6 +32,7 @@ const NotificationForm = ({ users }) => {
       });
 
       if (response.ok) {
+         router.push('/success');
         console.log("Notification sent successfully!");
       } else {
         const errorText = await response.text();

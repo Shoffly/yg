@@ -1,0 +1,35 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  background: #000; /* or any background you want */
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #fff;
+  position: relative; /* Ensure title is above animation */
+  z-index: 2; /* Ensure title is above animation */
+}
+
+.message {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #ccc;
+  position: relative; /* Ensure message is above animation */
+  z-index: 2; /* Ensure message is above animation */
+}
+
+.lottie {
+  width: 100%; /* or any size you want */
+  height: 100%; /* or any size you want */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; /* Ensure animation is behind title and message */
+}

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { router } from 'next/router';
+import { useRouter } from 'next/router';
 import styles from '/styles/NotificationForm.module.css'; // Import CSS module for styling
 
 const NotificationForm = ({ users }) => {
@@ -7,9 +7,12 @@ const NotificationForm = ({ users }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const formData = {
       users: users.map(user => ({
@@ -22,7 +25,7 @@ const NotificationForm = ({ users }) => {
     };
 
     try {
-      console.log(formData)
+      console.log(formData);
       const response = await fetch('https://ns-server-ky5ws.ondigitalocean.app/send-notification', {
         method: 'POST',
         headers: {
@@ -32,7 +35,7 @@ const NotificationForm = ({ users }) => {
       });
 
       if (response.ok) {
-         router.push('/success');
+        router.push('/success');
         console.log("Notification sent successfully!");
       } else {
         const errorText = await response.text();
@@ -42,6 +45,8 @@ const NotificationForm = ({ users }) => {
     } catch (error) {
       console.error("Error sending notification:", error);
       setErrorMessage(`Error sending notification: ${error.message}`);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -79,7 +84,9 @@ const NotificationForm = ({ users }) => {
           required
         />
       </div>
-      <button type="submit" className={styles.button}>Send Notification</button>
+      <button type="submit" className={styles.button} disabled={loading}>
+        {loading ? 'Loading...' : 'Send Notification'}
+      </button>
     </form>
   );
 };

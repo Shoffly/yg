@@ -3,11 +3,12 @@ import { useMemo, useState, useEffect } from 'react';
 import { useTable, useFilters, usePagination } from 'react-table';
 import styles from '../styles/DataTable.module.css';
 import NotificationForm from '../components/ui/NotificationForm';
+import HashLoader from "react-spinners/HashLoader";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const DataTable = () => {
-  const { data, error } = useSWR('/api/data?start_date=2023-05-20&end_date=2024-06-12', fetcher);
+  const { data, error } = useSWR('/api/data?start_date=2023-05-20&end_date=2025-06-12', fetcher);
 
   const [availableBranches, setAvailableBranches] = useState([]);
   const [branchFilter, setBranchFilter] = useState("");
@@ -85,6 +86,7 @@ const DataTable = () => {
     []
   );
 
+  let [color, setColor] = useState("#4caf50");
   const filteredData = useMemo(() => {
     return data?.filter((row) => {
       const recencyCategory = getCategory(row.recency_rank);
@@ -134,7 +136,12 @@ const DataTable = () => {
   } = tableInstance;
 
   if (error) return <div>Failed to load</div>;
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <div className={styles.loading}><HashLoader
+        color={color}
+        size={150}
+        aria-label="Loading"
+        
+      /></div>;
 
   const handleBranchFilterChange = (e) => {
     const value = e.target.value || "";

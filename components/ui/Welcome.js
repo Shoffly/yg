@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { supabase } from '/supabaseClient.js';
 import styles from '/styles/Welcome.module.css';
 import Link from 'next/link';
+import HashLoader from "react-spinners/HashLoader";
 
 export default function Welcome() {
   const [user, setUser] = useState(null);
@@ -20,6 +21,7 @@ export default function Welcome() {
     checkUser();
   }, [router]);
 
+  let [color, setColor] = useState("#4caf50");
   return (
     <div className={styles.container}>
       {user ? (
@@ -35,11 +37,17 @@ export default function Welcome() {
           </div>
           <div className={styles.section}>
             <h2 className={styles.h2}>Analyze</h2>
-            <button className={styles.button}>Pick a Campaign</button>
+            <Link href="https://gan-lhych.ondigitalocean.app">
+            <button className={styles.button}>Pick a Campaign</button></Link>
           </div>
         </>
       ) : (
-        <p>Loading...</p>
+        <div className={styles.loading}><HashLoader
+        color={color}
+        size={150}
+        aria-label="Loading"
+        
+      /></div>
       )}
     </div>
   );

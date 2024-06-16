@@ -36,6 +36,13 @@ export default function Welcome() {
               </Link>
           </div>
           <div className={styles.section}>
+            <h2 className={styles.h2}>Schedule from</h2>
+            <Link href="/sdatabase"><button className={styles.button}>Database</button></Link>
+            <Link href="sexcel">
+            <button className={styles.button}>Excel Sheet</button>
+              </Link>
+          </div>
+          <div className={styles.section}>
             <h2 className={styles.h2}>Analyze</h2>
             <Link href="https://gan-lhych.ondigitalocean.app">
             <button className={styles.button}>Pick a Campaign</button></Link>

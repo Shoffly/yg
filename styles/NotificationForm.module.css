@@ -1,4 +1,22 @@
 /* styles/NotificationForm.module.css */
+.title {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: white; /* Set the text color of the title */
+  text-decoration: underline;
+  text-decoration-color: #4caf50;
+}
+/* styles/DataTable.module.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  height: 100vh;
+  background-color: black;
+  padding: 2rem;
+  text-align: left;
+}
 .form {
   display: flex;
   flex-direction: column;

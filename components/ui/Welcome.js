@@ -29,6 +29,10 @@ export default function Welcome() {
           <h1 className={styles.h1}>Hey {user.user_metadata.first_name}, </h1>
           <h2 className={styles.h2}>What would you like to do today?</h2>
           <div className={styles.section}>
+            <h2 className={styles.h2}>Create</h2>
+            <Link href="/journeys"><button className={styles.button}>Journey</button></Link>
+          </div>
+          <div className={styles.section}>
             <h2 className={styles.h2}>Send from</h2>
             <Link href="/database"><button className={styles.button}>Database</button></Link>
             <Link href="excel">

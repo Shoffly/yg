@@ -149,7 +149,7 @@ const CreateJourneyPage = () => {
         </label>
       </div>
       <button className={styles.button} type="submit" disabled={isSubmitting}>
-        {isSubmitting ? 'Loading...' : 'Send'}
+        {isSubmitting ? 'Loading...' : 'Create'}
       </button>
     </form>
      </div>

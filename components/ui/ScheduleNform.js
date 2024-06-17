@@ -115,7 +115,7 @@ const NotificationSForm = ({ users }) => {
         />
       </div>
       <button type="submit" className={styles.button} disabled={loading}>
-        {loading ? 'Loading...' : 'Send Notification'}
+        {loading ? 'Loading...' : 'Schedule'}
       </button>
     </form>
   );

@@ -46,7 +46,7 @@ export default function JourneysPage() {
           <div className={styles.section} key={journey.id}>
             <h2 className={styles.name}>{journey.name}</h2>
             <p className={styles.description}>{journey.description}</p>
-            <p className={styles.runTimes}>Run {journey.run_times} times</p>
+            <p className={styles.runTimes}>Ran {journey.run_times} times</p>
             <div className={styles.buttonGroup}>
               <Link href={`/updatejourney?id=${journey.id}`} passHref>
                 <button className={styles.editbutton}>Edit</button>

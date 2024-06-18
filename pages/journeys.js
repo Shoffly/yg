@@ -14,7 +14,7 @@ export default function JourneysPage() {
   const fetchJourneys = async () => {
     try {
       // Fetch data from Supabase
-      const { data, error } = await supabase.from('journeys').select('id, name, description, run_times');
+      const { data, error } = await supabase.from('journeys').select('journey_id, name, description, run_times');
       if (error) throw error;
       setJourneys(data);
     } catch (error) {

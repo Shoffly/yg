@@ -1,8 +1,10 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import styles from '../styles/j-create.module.css';
+import { supabase } from '/supabaseClient.js';// Adjust the path if necessary
 
 export default function CreateCampaign() {
   const [campaignName, setCampaignName] = useState('');
+  const [campaignDescription, setCampaignDescription] = useState('');
   const [steps, setSteps] = useState([]);
 
   const addStep = () => {
@@ -36,6 +38,54 @@ export default function CreateCampaign() {
     setSteps(newSteps);
   };
 
+  const handleSubmit = async () => {
+    try {
+      // Insert into `rjourneys` table
+      const { data: journeysData, error: journeysError } = await supabase
+        .from('journeys')
+        .insert([
+          { name: campaignName, created_at: new Date(), num_steps: steps.length }
+        ])
+        .select();
+
+      if (journeysError) {
+        console.error('Error inserting into rjourneys:', journeysError.message);
+        throw new Error(journeysError.message);
+      }
+
+      console.log(journeysData)
+      const journeyId = journeysData[0].journey_id;
+
+      // Prepare data for `journey_steps` table
+      const journeyStepsData = steps.map((step, index) => ({
+        journey_id: journeyId,
+        step_number: index + 1,
+        trigger_type: step.triggerType,
+        trigger_value: step.triggerValue,
+        action_type: step.actionType,
+        delay_interval: step.delayInterval,
+        notification_title: step.title,
+        notification_content: step.content,
+        sms_content: step.actionType === 'send_sms' ? step.content : null
+      }));
+
+      // Insert into `journey_steps` table
+      const { error: journeyStepsError } = await supabase
+        .from('journey_steps')
+        .insert(journeyStepsData);
+
+      if (journeyStepsError) {
+        console.error('Error inserting into journey_steps:', journeyStepsError.message);
+        throw new Error(journeyStepsError.message);
+      }
+
+      alert('Journey created successfully!');
+    } catch (error) {
+      console.error('Error:', error.message);
+      alert('Error creating journey: ' + error.message);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Create Journey</h1>
@@ -48,6 +98,16 @@ export default function CreateCampaign() {
             placeholder="Journey Name"
             value={campaignName}
             onChange={(e) => setCampaignName(e.target.value)}
+          />
+        </div>
+        <div className={styles.field}>
+          <label className={styles.label}>Journey Description</label>
+          <input
+            type="text"
+            className={styles.input}
+            placeholder="Journey Description"
+            value={campaignDescription}
+            onChange={(e) => setCampaignDescription(e.target.value)}
           />
         </div>
         <button className={styles.button} onClick={addStep}>Add Step</button>
@@ -109,7 +169,7 @@ export default function CreateCampaign() {
             </div>
           </div>
         ))}
-        <button className={styles.button} >Create</button>
+        <button className={styles.button} onClick={handleSubmit}>Create</button>
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ const UpdateForm = () => {
     setIsSubmitting(true); // Set submitting state to true
 
     // Assuming you have a table named 'your_table_name' in Supabase
-    const { data, error } = await supabase.from('journeys').upsert([
+    const { data, error } = await supabase.from('broadcasts').upsert([
       {
         name,
         query,

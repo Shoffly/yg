@@ -14,7 +14,7 @@ export default function JourneysPage() {
   const fetchJourneys = async () => {
     try {
       // Fetch data from Supabase
-      const { data, error } = await supabase.from('journeys').select('id, name, description, run_times');
+      const { data, error } = await supabase.from('broadcasts').select('id, name, description, run_times');
       if (error) throw error;
       setJourneys(data);
     } catch (error) {
@@ -25,7 +25,7 @@ export default function JourneysPage() {
   const handleDelete = async (id) => {
     try {
       // Delete journey record from Supabase
-      const { error } = await supabase.from('journeys').delete().eq('id', id);
+      const { error } = await supabase.from('broadcasts').delete().eq('id', id);
       if (error) throw error;
       // Update state to remove the deleted journey from the UI
       setJourneys(journeys.filter((journey) => journey.id !== id));

@@ -25,7 +25,11 @@
 }
 
 .section {
-  margin: 1rem 0;
+  background-color: #333; /* Dark gray background */
+  padding: 20px;
+  margin-bottom: 20px;
+  padding: 2em;
+  border-radius: 5px;
 }
 
 .h2 {

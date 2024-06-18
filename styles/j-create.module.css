@@ -1,0 +1,118 @@
+/* styles/CreateCampaign.module.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  height: 100vh;
+  background-color: black;
+  padding: 2rem;
+  text-align: left;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  margin: 0 auto;
+  padding: 1em;
+  background-color: #000; /* Changed to a valid color */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+.title {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: white; /* Set the text color of the title */
+  text-decoration: underline;
+  text-decoration-color: #4caf50;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.field {
+  margin-bottom: 1em;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.1em;
+  font-weight: bold;
+}
+
+.input, .select {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  margin-bottom: 1em;
+  border-radius: 4px;
+}
+
+.button {
+  padding: 0.75em;
+  border: none;
+  border-radius: 4px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 1em;
+  margin-bottom: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #4caf70;
+}
+
+.section {
+  background-color: #333; /* Dark gray background */
+  padding: 2em;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  width: 100%; /* Fix the width */
+}
+
+.dbutton {
+  background-color: transparent; /* Make background transparent */
+  color: grey; /* Set initial text color to grey */
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s; /* Smooth transition for color change */
+}
+
+.dbutton:hover {
+  color: red; /* Change text color to red on hover */
+}
+
+.stepHeader {
+  margin-bottom: 1em;
+  font-size: 1.5em;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between; /* Align arrow to the right */
+  align-items: center;
+}
+
+.arrow {
+  font-size: 1.2em;
+}
+
+.stepContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  max-height: 0;
+}
+
+.expanded {
+  max-height: 1000px; /* Set this to a value large enough to contain the content */
+}
+
+.collapsed {
+  max-height: 0;
+}

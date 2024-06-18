@@ -36,10 +36,10 @@ export default function JourneysPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Journeys</h1>
-      <p>Journeys allow you to create step by step campaigns to personalize communication with users.</p>
+      <h1 className={styles.title}>Broadcasts</h1>
+      <p>Broadcasts allow you to create a dynamic pool of users and communicate a set message to them whenever you want to.</p>
       <div>
-        <Link href="/j-create"><button className={styles.button}>Create</button></Link>
+        <Link href="/createb"><button className={styles.button}>Create</button></Link>
       </div>
       <div>
         <h2 className={styles.h2}>Currently used</h2>
@@ -49,7 +49,7 @@ export default function JourneysPage() {
             <p className={styles.description}>{journey.description}</p>
             <p className={styles.runTimes}>Ran {journey.run_times} times</p>
             <div className={styles.buttonGroup}>
-              <Link href={`/updatejourney?id=${journey.id}`} passHref>
+              <Link href={`/updatebroadcast?id=${journey.id}`} passHref>
                 <button className={styles.editbutton}>Edit</button>
               </Link>
               <button className={styles.dbutton} onClick={() => handleDelete(journey.id)}>Delete</button>

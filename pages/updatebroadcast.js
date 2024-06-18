@@ -75,7 +75,7 @@ const CreateJourneyPage = () => {
 
   return (
     <div className={styles.container}>
-    <h1 className={styles.title}>Create Journey - v1</h1>
+    <h1 className={styles.title}>Update Broadcast - v1</h1>
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.field}>
         <label className={styles.label}>
@@ -149,7 +149,7 @@ const CreateJourneyPage = () => {
         </label>
       </div>
       <button className={styles.button} type="submit" disabled={isSubmitting}>
-        {isSubmitting ? 'Loading...' : 'Create'}
+        {isSubmitting ? 'Loading...' : 'Update'}
       </button>
     </form>
      </div>

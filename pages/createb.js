@@ -44,13 +44,13 @@ const UpdateForm = () => {
       setDescription('');
 
       // Redirect to /journeysuccess after successful submission
-      router.push('/journeysuccess');
+      router.push('/broadcastsuccess');
     }
   };
 
   return (
     <div className={styles.container}>
-       <h1 className={styles.title}>Create Journey - v1</h1>
+       <h1 className={styles.title}>Create broadcast - v1</h1>
 
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.field}>

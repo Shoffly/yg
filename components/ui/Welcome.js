@@ -28,19 +28,21 @@ export default function Welcome() {
         <>
           <h1 className={styles.h1}>Hey {user.user_metadata.first_name}, </h1>
           <h2 className={styles.h2}>What would you like to do today?</h2>
+          <div className={styles.actions}>
           <div className={styles.section}>
             <h2 className={styles.h2}>Create</h2>
-            <Link href="/journeys"><button className={styles.button}>Journey</button></Link>
+            <Link href="/broadcasts"><button className={styles.button}>broadcast</button></Link>
+            
           </div>
           <div className={styles.section}>
-            <h2 className={styles.h2}>Send from</h2>
+            <h2 className={styles.h2}>Send</h2>
             <Link href="/database"><button className={styles.button}>Database</button></Link>
             <Link href="excel">
             <button className={styles.button}>Excel Sheet</button>
               </Link>
           </div>
           <div className={styles.section}>
-            <h2 className={styles.h2}>Schedule from</h2>
+            <h2 className={styles.h2}>Schedule</h2>
             <Link href="/sdatabase"><button className={styles.button}>Database</button></Link>
             <Link href="sexcel">
             <button className={styles.button}>Excel Sheet</button>
@@ -51,6 +53,7 @@ export default function Welcome() {
             <Link href="https://gan-lhych.ondigitalocean.app">
             <button className={styles.button}>Pick a Campaign</button></Link>
           </div>
+            </div>
         </>
       ) : (
         <div className={styles.loading}><HashLoader

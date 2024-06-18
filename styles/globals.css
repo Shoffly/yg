@@ -31,8 +31,35 @@ button {
 input {
   font-family: "Open Sans", sans-serif;
   caret-color: #4caf50;
+  border-radius: 4px;
 }
 
 input:focus {
   outline-color: #4caf50;
+}
+
+/* Styling for select options */
+select {
+  background-color: #333; /* Dark gray background */
+  color: white; /* White text color */
+  padding: 0.5em;
+  border-radius: 4px;
+  font-family: "Open Sans", sans-serif;
+
+  cursor: pointer;
+}
+
+option {
+  background-color: #333; /* Dark gray background */
+  font-family: "Open Sans", sans-serif;
+  color: white; /* White text color */
+}
+
+/* Hover effect for select */
+select:hover {
+  background-color: #4caf50; /* Green background on hover */
+}
+
+option:hover {
+  background-color: #4caf50; /* Green background on hover */
 }

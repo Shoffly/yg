@@ -20,7 +20,7 @@ const CreateJourneyPage = () => {
       if (id) {
         try {
           const { data, error } = await supabase
-            .from('journeys')
+            .from('broadcasts')
             .select('*')
             .eq('id', id)
             .single();
@@ -47,7 +47,7 @@ const CreateJourneyPage = () => {
     const { id } = router.query; // Destructure id from router.query
 
     try {
-      const { data, error } = await supabase.from('journeys').upsert([
+      const { data, error } = await supabase.from('broadcasts').upsert([
         {
           id: id || undefined, // Provide ID only if editing
           name,

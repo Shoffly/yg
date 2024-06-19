@@ -1,22 +1,33 @@
 import { useState } from 'react';
 import styles from '../styles/j-create.module.css';
-import { supabase } from '/supabaseClient.js';// Adjust the path if necessary
+import { router } from 'next/router';
+import { supabase } from '/supabaseClient.js'; // Adjust the path if necessary
 
 export default function CreateCampaign() {
   const [campaignName, setCampaignName] = useState('');
   const [campaignDescription, setCampaignDescription] = useState('');
   const [steps, setSteps] = useState([]);
 
+  const branches = [
+    "All Branches", "Abbas El Akkad", "Ahram Mall", "Alex Library", "Cairo Festival City Mall",
+    "Downtown Kattameya", "El Nasr St.- Maadi", "Family Mall", "HQ - Cilantro Employees Only",
+    "Hyper One", "Kalpit Thakkar", "Koleya Harbia", "Maadi Street 9", "Merghany", "Messaha",
+    "Mohandiseen", "Mokkatam", "Mossadak", "Nile City Towers", "October Plaza", "Rofayda Hospital",
+    "Sahel - Amwaj", "Sahel - Bianchi", "Sahel - El Abd", "Sahel - Gaia", "Sahel - Ghazala Bay",
+    "Sahel - Hacienda Bay", "Sahel - Zahran Badr", "Tahrir", "Taqa Gas Station -New Giza",
+    "Taqa West Somid", "Test", "The Yard Mall - Rehab", "Total Gas Station - 90 St", "Vandit Patel", "Yara"
+  ];
+
   const addStep = () => {
-    const newStep = { 
-      triggerType: '', 
-      triggerValue: '', 
-      actionType: '', 
-      actionValue: '', 
-      delayInterval: 0, 
-      title: '', 
+    const newStep = {
+      triggerType: '',
+      triggerValue: '',
+      actionType: '',
+      actionValue: '',
+      delayInterval: 0,
+      title: '',
       content: '',
-      isExpanded: true 
+      isExpanded: true
     };
     setSteps([...steps, newStep]);
   };
@@ -44,7 +55,7 @@ export default function CreateCampaign() {
       const { data: journeysData, error: journeysError } = await supabase
         .from('journeys')
         .insert([
-          { name: campaignName, created_at: new Date(), num_steps: steps.length }
+          { name: campaignName, created_at: new Date(), num_steps: steps.length, description: campaignDescription }
         ])
         .select();
 
@@ -53,7 +64,11 @@ export default function CreateCampaign() {
         throw new Error(journeysError.message);
       }
 
-      console.log(journeysData)
+      if (!journeysData || journeysData.length === 0 || !journeysData[0].journey_id) {
+        console.error('Unexpected response format or missing journey_id:', journeysData);
+        throw new Error('Failed to retrieve journey_id from the inserted journey.');
+      }
+
       const journeyId = journeysData[0].journey_id;
 
       // Prepare data for `journey_steps` table
@@ -75,13 +90,13 @@ export default function CreateCampaign() {
         .insert(journeyStepsData);
 
       if (journeyStepsError) {
-        console.error('Error inserting into journey_steps:', journeyStepsError.message);
+        console.error('Error inserting into journey_steps:', journeyStepsError.message, journeyStepsData);
         throw new Error(journeyStepsError.message);
       }
 
-      alert('Journey created successfully!');
+       router.push('/journeysuccess');
     } catch (error) {
-      console.error('Error:', error.message);
+      console.error('Error:', error.message, error.stack);
       alert('Error creating journey: ' + error.message);
     }
   };
@@ -91,7 +106,7 @@ export default function CreateCampaign() {
       <h1 className={styles.title}>Create Journey</h1>
       <div className={styles.form}>
         <div className={styles.field}>
-          <label className={styles.label}>Journey Name</label>
+          <label className={styles.label}>Name</label>
           <input
             type="text"
             className={styles.input}
@@ -101,7 +116,7 @@ export default function CreateCampaign() {
           />
         </div>
         <div className={styles.field}>
-          <label className={styles.label}>Journey Description</label>
+          <label className={styles.label}>Description</label>
           <input
             type="text"
             className={styles.input}
@@ -119,24 +134,43 @@ export default function CreateCampaign() {
                 {step.isExpanded ? '▼' : '►'}
               </span>
             </h2>
-            <div 
+            <div
               className={`${styles.stepContent} ${step.isExpanded ? styles.expanded : styles.collapsed}`}
             >
               <select
                 className={styles.select}
+                value={step.triggerType}
                 onChange={(e) => handleStepChange(index, 'triggerType', e.target.value)}
               >
                 <option value="">Select Trigger</option>
-                <option value="no_orders">No Orders</option>
+                <option value="send_to_user_ids">Specific User IDs</option>
+                <option value="max_orders"> Maximum # of orders placed</option>
+                <option value="top_branch">Top Branch</option>
+                <option value="days_since_last_order">Days Since Last Order</option>
+                <option value="min_order_value">Minimum Order Value</option>
               </select>
-              <input
-                type="text"
-                className={styles.input}
-                placeholder="Trigger Value"
-                onChange={(e) => handleStepChange(index, 'triggerValue', e.target.value)}
-              />
+              {step.triggerType === 'top_branch' ? (
+                <select
+                  className={styles.select}
+                  value={step.triggerValue}
+                  onChange={(e) => handleStepChange(index, 'triggerValue', e.target.value)}
+                >
+                  {branches.map((branch, idx) => (
+                    <option key={idx} value={branch}>{branch}</option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type="text"
+                  className={styles.input}
+                  placeholder="Trigger Value"
+                  value={step.triggerValue}
+                  onChange={(e) => handleStepChange(index, 'triggerValue', e.target.value)}
+                />
+              )}
               <select
                 className={styles.select}
+                value={step.actionType}
                 onChange={(e) => handleStepChange(index, 'actionType', e.target.value)}
               >
                 <option value="">Select Action</option>
@@ -149,11 +183,13 @@ export default function CreateCampaign() {
                     type="text"
                     className={styles.input}
                     placeholder="Notification Title"
+                    value={step.title}
                     onChange={(e) => handleStepChange(index, 'title', e.target.value)}
                   />
                   <textarea
                     className={styles.input}
                     placeholder="Notification Content"
+                    value={step.content}
                     onChange={(e) => handleStepChange(index, 'content', e.target.value)}
                   />
                 </div>
@@ -163,6 +199,7 @@ export default function CreateCampaign() {
                 type="number"
                 className={styles.input}
                 placeholder="Delay Interval (days)"
+                value={step.delayInterval}
                 onChange={(e) => handleStepChange(index, 'delayInterval', parseInt(e.target.value))}
               />
               <button className={styles.dbutton} onClick={() => removeStep(index)}>Remove Step</button>

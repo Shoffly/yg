@@ -66,7 +66,7 @@ const CreateJourneyPage = () => {
       setIsSubmitting(false);
 
       // Redirect to /journeysuccess after successful submission
-      router.push('/journeysuccess');
+      router.push('/broadcastsuccess');
     } catch (error) {
       setIsSubmitting(false);
       console.error('Error updating data:', error.message);

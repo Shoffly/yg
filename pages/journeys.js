@@ -49,9 +49,6 @@ export default function JourneysPage() {
             <p className={styles.description}>{journey.description}</p>
             <p className={styles.runTimes}>Ran {journey.run_times} times</p>
             <div className={styles.buttonGroup}>
-              <Link href={`/updatejourney?id=${journey.id}`} passHref>
-                <button className={styles.editbutton}>Edit</button>
-              </Link>
               <button className={styles.dbutton} onClick={() => handleDelete(journey.id)}>Delete</button>
             </div>
           </div>

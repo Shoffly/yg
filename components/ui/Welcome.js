@@ -31,6 +31,7 @@ export default function Welcome() {
           <div className={styles.actions}>
           <div className={styles.section}>
             <h2 className={styles.h2}>Create</h2>
+             <Link href="/journeys"><button className={styles.button}>Journey</button></Link>
             <Link href="/broadcasts"><button className={styles.button}>broadcast</button></Link>
             
           </div>

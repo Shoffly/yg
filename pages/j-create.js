@@ -9,7 +9,7 @@ export default function CreateCampaign() {
   const [steps, setSteps] = useState([]);
 
   const branches = [
-    "All Branches", "Abbas El Akkad", "Ahram Mall", "Alex Library", "Cairo Festival City Mall",
+  "Abbas El Akkad", "Ahram Mall", "Alex Library", "Cairo Festival City Mall",
     "Downtown Kattameya", "El Nasr St.- Maadi", "Family Mall", "HQ - Cilantro Employees Only",
     "Hyper One", "Kalpit Thakkar", "Koleya Harbia", "Maadi Street 9", "Merghany", "Messaha",
     "Mohandiseen", "Mokkatam", "Mossadak", "Nile City Towers", "October Plaza", "Rofayda Hospital",
@@ -125,7 +125,7 @@ export default function CreateCampaign() {
             onChange={(e) => setCampaignDescription(e.target.value)}
           />
         </div>
-        <button className={styles.button} onClick={addStep}>Add Step</button>
+        <button className={styles.sbutton} onClick={addStep}>Add Step</button>
         {steps.map((step, index) => (
           <div key={index} className={styles.section}>
             <h2 className={styles.stepHeader} onClick={() => toggleStep(index)}>

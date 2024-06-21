@@ -65,7 +65,7 @@ const NotificationForm = ({ users }) => {
         />
       </div>
       <div className={styles.field}>
-        <label htmlFor="title" className={styles.label}>Title</label>
+        <label htmlFor="title" className={styles.label}>Title {first_name} to customize :)</label>
         <input
           id="title"
           value={title}
@@ -75,7 +75,7 @@ const NotificationForm = ({ users }) => {
         />
       </div>
       <div className={styles.field}>
-        <label htmlFor="content" className={styles.label}>Content</label>
+        <label htmlFor="content" className={styles.label}>Content {first_name} to customize :)</label>
         <textarea
           id="content"
           value={content}

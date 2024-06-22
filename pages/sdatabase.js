@@ -135,7 +135,7 @@ const DataTables = () => {
     state: { pageIndex },
   } = tableInstance;
 
-  if (error) return <div>Failed to load</div>;
+  if (error) return <div className={styles.loading}>Failed to load</div>;
   if (!data) return <div className={styles.loading}><HashLoader
         color={color}
         size={150}

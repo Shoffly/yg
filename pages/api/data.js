@@ -1,4 +1,3 @@
-// pages/api/data.js
 import mysql from 'mysql';
 
 const db_config_cilantro = {
@@ -12,9 +11,19 @@ const db_config_cilantro = {
 export default function handler(req, res) {
   const connection = mysql.createConnection(db_config_cilantro);
 
-  connection.connect();
+  connection.connect((err) => {
+    if (err) {
+      console.error('Error connecting to the database:', err);
+      return res.status(500).json({ error: 'Database connection failed' });
+    }
+  });
 
   const { start_date, end_date } = req.query;
+
+  // Validate input dates
+  if (!start_date || !end_date) {
+    return res.status(400).json({ error: 'Start date and end date are required' });
+  }
 
   const query = `
     WITH UserOrders AS (
@@ -79,9 +88,16 @@ export default function handler(req, res) {
   `;
 
   connection.query(query, [start_date, end_date], (error, results) => {
-    if (error) throw error;
+    if (error) {
+      console.error('Error executing query:', error);
+      return res.status(500).json({ error: 'Query execution failed' });
+    }
 
     res.status(200).json(results);
-    connection.end();
+    connection.end((err) => {
+      if (err) {
+        console.error('Error closing the database connection:', err);
+      }
+    });
   });
 }

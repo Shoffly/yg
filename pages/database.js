@@ -8,7 +8,7 @@ import HashLoader from "react-spinners/HashLoader";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const DataTable = () => {
-  const { data, error } = useSWR('/api/data?start_date=2023-05-20&end_date=2025-06-12', fetcher);
+  const { data, error } = useSWR('/api/data?start_date=2023-05-20&end_date=2024-07-12', fetcher);
 
   const [availableBranches, setAvailableBranches] = useState([]);
   const [branchFilter, setBranchFilter] = useState("");
@@ -135,7 +135,7 @@ const DataTable = () => {
     state: { pageIndex },
   } = tableInstance;
 
-  if (error) return <div>Failed to load</div>;
+  if (error) return <div className={styles.loading}>Failed to load</div>;
   if (!data) return <div className={styles.loading}><HashLoader
         color={color}
         size={150}

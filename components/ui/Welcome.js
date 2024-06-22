@@ -77,7 +77,7 @@ export default function Welcome() {
               </Link>
           </div>
           <div>
-            <h2 className={styles.h2}>Analyze</h2>
+            <h2 className={styles.h2}>More</h2>
             <Bento images={limages}/>
           </div>
             </div>

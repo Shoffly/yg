@@ -90,7 +90,7 @@ export default function handler(req, res) {
   connection.query(query, [start_date, end_date], (error, results) => {
     if (error) {
       console.error('Error executing query:', error);
-      return res.status(500).json({ error: 'Query execution failed' });
+      return res.status(500).json(error);
     }
 
     res.status(200).json(results);

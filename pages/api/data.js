@@ -9,19 +9,26 @@ const db_config_cilantro = {
 };
 
 export default function handler(req, res) {
+  console.log('Handler invoked');
+
   const connection = mysql.createConnection(db_config_cilantro);
 
   connection.connect((err) => {
     if (err) {
       console.error('Error connecting to the database:', err);
       return res.status(500).json({ error: 'Database connection failed' });
+    } else {
+      console.log('Database connection established');
     }
   });
 
   const { start_date, end_date } = req.query;
 
+  console.log('Received query parameters:', { start_date, end_date });
+
   // Validate input dates
   if (!start_date || !end_date) {
+    console.error('Start date and end date are required');
     return res.status(400).json({ error: 'Start date and end date are required' });
   }
 
@@ -87,16 +94,22 @@ export default function handler(req, res) {
     LEFT JOIN UserTopBranch t ON r.user_id = t.user_id AND t.branch_rank = 1;
   `;
 
+  console.log('Executing query:', query);
+
   connection.query(query, [start_date, end_date], (error, results) => {
     if (error) {
       console.error('Error executing query:', error);
-      return res.status(500).json(error);
+      return res.status(500).json({ error: 'Query execution failed' });
     }
+
+    console.log('Query executed successfully, results:', results);
 
     res.status(200).json(results);
     connection.end((err) => {
       if (err) {
         console.error('Error closing the database connection:', err);
+      } else {
+        console.log('Database connection closed');
       }
     });
   });

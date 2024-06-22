@@ -5,7 +5,18 @@ import styles from '../styles/DataTable.module.css';
 import NotificationForm from '../components/ui/NotificationForm';
 import HashLoader from "react-spinners/HashLoader";
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = (url) =>
+  fetch(url)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return res.json();
+    })
+    .catch((error) => {
+      console.error('Fetching data failed:', error);
+      throw error;
+    });
 
 const DataTable = () => {
   const { data, error } = useSWR('/api/data?start_date=2023-05-20&end_date=2024-07-12', fetcher);

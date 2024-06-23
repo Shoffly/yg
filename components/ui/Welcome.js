@@ -40,6 +40,22 @@ export default function Welcome() {
       link: "/broadcasts"
     },
   ];
+  const simages = [
+    {
+      src: "/images/notification_button.svg",
+      alt: "Notification Image",
+      width: 345,
+      height: 255,
+      link: "/send/notifications"
+    },
+    {
+      src: "/images/sms_button.svg",
+      alt: "broadcast Image",
+      width: 345,
+      height: 255,
+      link: "/send/sms"
+    },
+  ];
 
   const limages = [
     {
@@ -62,20 +78,11 @@ export default function Welcome() {
             <Bento images={timages} />
             <br></br>
           </div>
-          <div className={styles.section}>
-            <h2 className={styles.h2}>Send Campaign</h2>
-            <Link href="/database"><button className={styles.button}>Database</button></Link>
-            <Link href="excel">
-            <button className={styles.button}>Excel Sheet</button>
-              </Link>
-          </div>
-          <div className={styles.section}>
-            <h2 className={styles.h2}>Schedule Campaign</h2>
-            <Link href="/sdatabase"><button className={styles.button}>Database</button></Link>
-            <Link href="sexcel">
-            <button className={styles.button}>Excel Sheet</button>
-              </Link>
-          </div>
+            <div>
+              <h2 className={styles.h2}>Send</h2>
+              <Bento images={simages} />
+              <br></br>
+            </div>
           <div>
             <h2 className={styles.h2}>More</h2>
             <Bento images={limages}/>

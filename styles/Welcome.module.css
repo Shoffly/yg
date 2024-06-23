@@ -8,7 +8,13 @@
   padding: 2rem;
   text-align: left;
 }
-
+.title {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: white; /* Set the text color of the title */
+  text-decoration: underline;
+  text-decoration-color: #4caf50;
+}
 .loading{
   display:flex;
   align-items: center;

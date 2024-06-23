@@ -5,7 +5,7 @@ import styles from '../styles/SuccessPage.module.css'; // Create and import CSS 
 const SuccessPage = () => {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>The Notification campaign is successfully sheduled!</h1>
+      <h1 className={styles.title}>The  campaign is successfully sheduled!</h1>
       <p className={styles.message}>You should receive an email once it&apos;s done.</p>
       <Lottie animationData={successAnimation} className={styles.lottie} />
     </div>

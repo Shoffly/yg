@@ -95,7 +95,7 @@ export default function handler(req, res) {
       r.user_number
     FROM RankedUserOrders r
     LEFT JOIN UserTopBranch t ON r.user_id = t.user_id AND t.branch_rank = 1
-    LIMIT 17400;
+    LIMIT 16000;
   `;
 
   console.log('Executing query:', query);

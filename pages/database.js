@@ -93,6 +93,10 @@ const DataTable = () => {
         Header: 'Top Branch',
         accessor: 'top_branch',
       },
+      {
+        Header: 'Favourite item',
+        accessor: 'most_ordered_beverage',
+      },
     ],
     []
   );
@@ -117,7 +121,8 @@ const DataTable = () => {
 
   const filteredUsers = filteredData.map((row) => ({
     user_id: row.user_id,
-    first_name: row.first_name
+    first_name: row.first_name,
+    fav_item: row.most_ordered_beverage
   }));
 
   console.log(filteredUsers)

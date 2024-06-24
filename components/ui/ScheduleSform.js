@@ -27,7 +27,8 @@ const SForm = ({ users }) => {
     const formData = {
       users: users.map(user => ({
         user_number: user.user_number,
-        first_name: user.first_name
+        first_name: user.first_name,
+        fav_item: user.fav_item
       })),
       campaign: campaignName,
       smscontent: content,
@@ -46,15 +47,15 @@ const SForm = ({ users }) => {
 
       if (response.ok) {
         router.push('/schedulesuccess');
-        console.log("Notification sent successfully!");
+        console.log("SMS sent successfully!");
       } else {
         const errorText = await response.text();
-        console.error("Failed to send notification:", errorText);
-        setErrorMessage(`Failed to send notification: ${response.statusText}`);
+        console.error("Failed to send SMS:", errorText);
+        setErrorMessage(`Failed to send SMS: ${response.statusText}`);
       }
     } catch (error) {
-      console.error("Error sending notification:", error);
-      setErrorMessage(`Error sending notification: ${error.message}`);
+      console.error("Error sending SMS:", error);
+      setErrorMessage(`Error sending SMS: ${error.message}`);
     } finally {
       setLoading(false);
     }
@@ -69,7 +70,7 @@ const SForm = ({ users }) => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <h2 className={styles.title}>Send Notification</h2>
+      <h2 className={styles.title}>Send SMS</h2>
       {errorMessage && <div className={styles.error}>{errorMessage}</div>}
       <div className={styles.field}>
         <label htmlFor="campaignName" className={styles.label}>Campaign Name</label>

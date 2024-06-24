@@ -17,7 +17,8 @@ const NotificationForm = ({ users }) => {
     const formData = {
       users: users.map(user => ({
         user_id: user.user_id,
-        first_name: user.first_name
+        first_name: user.first_name,
+        fav_item: user.fav_item
       })),
       campaign: campaignName,
       title: title,

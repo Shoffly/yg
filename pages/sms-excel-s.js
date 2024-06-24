@@ -22,7 +22,8 @@ const ExcelTable = () => {
       // Extract user data from the Excel sheet (assuming user_id is in the first column and first_name is in the second column)
       const usersData = excelRows.slice(1).map(row => ({
         user_number: row[0],
-        first_name: row[1]
+        first_name: row[1],
+        fav_item: row[2]
       }));
       setUsers(usersData);
     };

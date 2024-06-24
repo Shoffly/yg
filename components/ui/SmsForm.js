@@ -16,7 +16,8 @@ const SmsForm = ({ users }) => {
     const formData = {
       users: users.map(user => ({
         user_number: user.user_number,
-        first_name: user.first_name
+        first_name: user.first_name,
+        fav_item: user.fav_item
       })),
       
       smscontent: content
@@ -50,7 +51,7 @@ const SmsForm = ({ users }) => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <h2 className={styles.title}>Send Notification</h2>
+      <h2 className={styles.title}>Send SMS</h2>
       {errorMessage && <div className={styles.error}>{errorMessage}</div>}
       <div className={styles.field}>
         <label htmlFor="campaignName" className={styles.label}>Campaign Name</label>

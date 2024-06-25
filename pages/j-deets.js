@@ -56,20 +56,21 @@ export default function JourneyDetails() {
       <h1 className={styles.title}>Journey Details</h1>
       {journeyDetails && (
         <div className={styles.journeyDetails}>
-          <h2 className={styles.subtitle}>Name: {journeyDetails.name}</h2>
-          <p className={styles.description}>Description: {journeyDetails.description}</p>
+          <h4 className={styles.description}>Name:<br></br> {journeyDetails.name}</h4>
+          <p className={styles.description}>Description:<br></br> {journeyDetails.description}</p>
           <h3 className={styles.subtitle}>Steps</h3>
           {steps.map((step, index) => (
             <div key={index} className={styles.step}>
-              <h4 className={styles.stepTitle}>Step {index + 1}</h4>
+              <h3 className={styles.stepTitle}>Step {index + 1}</h3>
+              <p className={styles.stepUsers}><strong>Users on this step:</strong> {usersPerStep[step.step_number] || 0}</p> <div className={styles.deets}> 
               <p className={styles.stepDetail}><strong>Trigger Type:</strong> {step.trigger_type}</p>
               <p className={styles.stepDetail}><strong>Trigger Value:</strong> {step.trigger_value}</p>
               <p className={styles.stepDetail}><strong>Action Type:</strong> {step.action_type}</p>
-              <p className={styles.stepDetail}><strong>Action Value:</strong> {step.action_value}</p>
               <p className={styles.stepDetail}><strong>Delay Interval:</strong> {step.delay_interval} days</p>
               <p className={styles.stepDetail}><strong>Notification Title:</strong> {step.notification_title}</p>
               <p className={styles.stepDetail}><strong>Notification Content:</strong> {step.notification_content}</p>
-              <p className={styles.stepDetail}><strong>Users on this step:</strong> {usersPerStep[step.step_number] || 0}</p>
+</div>
+
             </div>
           ))}
         </div>

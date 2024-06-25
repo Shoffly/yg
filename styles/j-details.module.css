@@ -16,10 +16,22 @@
   padding: 2em;
   border-radius: 33px;
 }
+
+.deets {
+  background-color: black; 
+  margin-bottom: 20px;
+  padding: 1em;
+  border-radius: 33px;
+}
 .title {
   font-size: 2em;
   margin-bottom: 10px;
   color: white; /* Set the text color of the title */
   text-decoration: underline;
+  text-decoration-color: #4caf50;
+}
+
+.stepUsers{
+text-decoration: underline;
   text-decoration-color: #4caf50;
 }

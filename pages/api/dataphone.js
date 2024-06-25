@@ -147,6 +147,7 @@ export default function handler(req, res) {
    LEFT JOIN UserTopBranch t ON r.user_id = t.user_id AND t.branch_rank = 1
    LEFT JOIN user_most_ordered_beverage ubb ON r.user_id = ubb.user_id
    where         ubb.most_ordered_item is not null -- remove users that didnt not order bev at all
+   limit 14000;
   `;
 
   console.log('Executing query:', query);

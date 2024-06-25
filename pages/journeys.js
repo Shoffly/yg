@@ -49,6 +49,9 @@ export default function JourneysPage() {
             <p className={styles.description}>{journey.description}</p>
             <p className={styles.runTimes}>Has {journey.num_steps} steps</p>
             <div className={styles.buttonGroup}>
+              <Link href={`/j-deets?id=${journey.journey_id}`} passHref>
+                <button className={styles.editbutton}>Overview</button>
+              </Link>
               <Link href={`/j-update?id=${journey.journey_id}`} passHref>
                 <button className={styles.editbutton}>Edit</button>
               </Link>

@@ -14,7 +14,7 @@ export default function JourneysPage() {
   const fetchJourneys = async () => {
     try {
       // Fetch data from Supabase
-      const { data, error } = await supabase.from('journeys').select('journey_id, name, description, run_times');
+      const { data, error } = await supabase.from('journeys').select('journey_id, name, description, num_steps');
       if (error) throw error;
       setJourneys(data);
     } catch (error) {
@@ -47,7 +47,7 @@ export default function JourneysPage() {
           <div className={styles.section} key={journey.id}>
             <h2 className={styles.name}>{journey.name}</h2>
             <p className={styles.description}>{journey.description}</p>
-            <p className={styles.runTimes}>Ran {journey.run_times} times</p>
+            <p className={styles.runTimes}>Has {journey.num_steps} steps</p>
             <div className={styles.buttonGroup}>
               <Link href={`/j-update?id=${journey.journey_id}`} passHref>
                 <button className={styles.editbutton}>Edit</button>

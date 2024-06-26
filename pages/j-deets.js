@@ -26,8 +26,7 @@ export default function JourneyDetails() {
           journey_steps(*),
           journey_users(*)
         `)
-        .eq('journey_id', id)
-        .single();
+        .eq('journey_id', id).neq('journey_users.done','true').single();
 
       if (journeyError) {
         console.error('Error fetching journey:', journeyError.message);

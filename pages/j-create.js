@@ -9,7 +9,7 @@ export default function CreateCampaign() {
   const [steps, setSteps] = useState([]);
 
   const branches = [
-  "Abbas El Akkad", "Ahram Mall", "Alex Library", "Cairo Festival City Mall",
+    "Abbas El Akkad", "Ahram Mall", "Alex Library", "Cairo Festival City Mall",
     "Downtown Kattameya", "El Nasr St.- Maadi", "Family Mall", "HQ - Cilantro Employees Only",
     "Hyper One", "Kalpit Thakkar", "Koleya Harbia", "Maadi Street 9", "Merghany", "Messaha",
     "Mohandiseen", "Mokkatam", "Mossadak", "Nile City Towers", "October Plaza", "Rofayda Hospital",
@@ -35,6 +35,11 @@ export default function CreateCampaign() {
   const handleStepChange = (index, field, value) => {
     const newSteps = [...steps];
     newSteps[index][field] = value;
+    // Handle the special case for step 1 here:
+    if (index === 0) {
+      // Remove delayInterval from the first step
+      delete newSteps[index].delayInterval;
+    }
     setSteps(newSteps);
   };
 
@@ -78,7 +83,7 @@ export default function CreateCampaign() {
         trigger_type: step.triggerType,
         trigger_value: step.triggerValue,
         action_type: step.actionType,
-        delay_interval: step.delayInterval,
+        delay_interval: index === 0 ? 0 : step.delayInterval, // Set delay_interval to 0 for the first step
         notification_title: step.title,
         notification_content: step.content,
         sms_content: step.actionType === 'send_sms' ? step.content : null
@@ -94,7 +99,7 @@ export default function CreateCampaign() {
         throw new Error(journeyStepsError.message);
       }
 
-       router.push('/journeysuccess');
+      router.push('/journeysuccess');
     } catch (error) {
       console.error('Error:', error.message, error.stack);
       alert('Error creating journey: ' + error.message);
@@ -144,7 +149,7 @@ export default function CreateCampaign() {
               >
                 <option value="">Select Trigger</option>
                 <option value="send_to_user_ids">Specific User IDs</option>
-                <option value="max_orders"> Maximum # of orders placed</option>
+                <option value="max_orders">Maximum # of orders placed</option>
                 <option value="top_branch">Top Branch</option>
                 <option value="days_since_last_order">Days Since Last Order</option>
                 <option value="min_order_value">Minimum Order Value</option>
@@ -194,14 +199,18 @@ export default function CreateCampaign() {
                   />
                 </div>
               )}
-              <label className={styles.label}>How much time do you want between steps?</label>
-              <input
-                type="number"
-                className={styles.input}
-                placeholder="Delay Interval (days)"
-                value={step.delayInterval}
-                onChange={(e) => handleStepChange(index, 'delayInterval', parseInt(e.target.value))}
-              />
+              {index !== 0 && ( // Conditionally render delay interval for steps other than the first
+                <>
+                  <label className={styles.label}>How much time do you want between steps?</label>
+                  <input
+                    type="number"
+                    className={styles.input}
+                    placeholder="Delay Interval (days)"
+                    value={step.delayInterval}
+                    onChange={(e) => handleStepChange(index, 'delayInterval', parseInt(e.target.value))}
+                  />
+                </>
+              )}
               <button className={styles.dbutton} onClick={() => removeStep(index)}>Remove Step</button>
             </div>
           </div>

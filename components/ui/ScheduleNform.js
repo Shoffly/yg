@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from '/styles/NotificationForm.module.css';
+import { Mixpanel } from '/mixpanel';
 
 const NotificationSForm = ({ users }) => {
   const [campaignName, setCampaignName] = useState("");
@@ -69,6 +70,9 @@ const NotificationSForm = ({ users }) => {
     const formattedDateTime = `${selectedDateTime.getFullYear()}-${String(selectedDateTime.getMonth() + 1).padStart(2, '0')}-${String(selectedDateTime.getDate()).padStart(2, '0')} ${String(selectedDateTime.getHours()).padStart(2, '0')}:${String(selectedDateTime.getMinutes()).padStart(2, '0')}:${String(selectedDateTime.getSeconds()).padStart(2, '0')}`;
     setScheduledTime(formattedDateTime);
   };
+  const monitorClick = () => {
+    Mixpanel.track('Button Clicked', { buttonName: 'Send scheduled notification campaign' });
+  };
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
@@ -115,7 +119,9 @@ const NotificationSForm = ({ users }) => {
           required
         />
       </div>
-      <button type="submit" className={styles.button} disabled={loading}>
+      <button type="submit" 
+        onClick= {monitorClick}
+        className={styles.button} disabled={loading}>
         {loading ? 'Loading...' : 'Schedule'}
       </button>
     </form>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import styles from '/styles/NotificationForm.module.css'; // Import CSS module for styling
+import styles from '/styles/NotificationForm.module.css'; 
+import { Mixpanel } from '/mixpanel';
 
 const NotificationForm = ({ users }) => {
   const [campaignName, setCampaignName] = useState("");
@@ -50,6 +51,10 @@ const NotificationForm = ({ users }) => {
       setLoading(false);
     }
   };
+  const monitorClick = () => {
+    Mixpanel.track('Button Clicked', { buttonName: 'Send notification campaign' });
+  };
+
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
@@ -85,7 +90,8 @@ const NotificationForm = ({ users }) => {
           required
         />
       </div>
-      <button type="submit" className={styles.button} disabled={loading}>
+      <button onClick= {monitorClick}
+        type="submit" className={styles.button} disabled={loading}>
         {loading ? 'Loading...' : 'Send Notification'}
       </button>
     </form>

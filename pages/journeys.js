@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react';
 import { supabase } from '/supabaseClient.js'; // Adjusted import path
 import Link from 'next/link';
 import styles from '../styles/journeys.module.css'; // Import CSS module
+import { Mixpanel } from '/mixpanel';
 
 export default function JourneysPage() {
+  Mixpanel.track('Journeys main page Viewed')
   const [journeys, setJourneys] = useState([]);
 
   useEffect(() => {

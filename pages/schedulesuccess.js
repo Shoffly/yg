@@ -1,8 +1,10 @@
 import Lottie from 'lottie-react';
 import successAnimation from '../public/Animation - 1718481379890.json'; 
 import styles from '../styles/SuccessPage.module.css'; // Create and import CSS style as needed
+import { Mixpanel } from '/mixpanel';
 
 const SuccessPage = () => {
+  Mixpanel.track('Campaign scheduled successfully')
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>The  campaign is successfully sheduled!</h1>

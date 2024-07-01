@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '/supabaseClient.js'; // Adjust the path if necessary
 import styles from '../styles/j-details.module.css'; // Create and adjust the styles as necessary
-
+import { Mixpanel } from '/mixpanel';
 export default function JourneyDetails() {
+  Mixpanel.track('Opened journey details')
   const router = useRouter();
   const { id } = router.query;
 
